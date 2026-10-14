@@ -71,7 +71,3 @@
 
 ---
 
-## 🛠️ Ferramentas Utilizadas (Registo)
-- **Modelos de IA:** [Ex: Claude 3.5 Sonnet, GPT-4o, etc.]
-- **Linguagem:** [Python / Java]
-- **Ferramenta de Fitness Functions:** [import-linter / ArchUnit]
