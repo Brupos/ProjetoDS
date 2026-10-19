@@ -3,12 +3,12 @@
 ## O que Temos de Fazer
 
 ### 1. Documentação de Arquitetura (Pasta `docs/`)
-- [ ] **`01-caracteristicas.md`**:
+- [x] **`01-caracteristicas.md`**:
   - Worksheet com até 7 características candidatas (implícitas numa coluna à parte e ligadas às frases do enunciado).
   - Seleção e destaque das **Top 3** características (sem ordenar).
   - Pelo menos 1 característica composta decomposta.
   - 1 cenário concreto para cada uma das Top 3 no contexto do Lisboa Pedala.
-- [ ] **`02-componentes.md`**:
+- [x] **`02-componentes.md`**:
   - Definir componentes lógicos (escolher abordagem: *workflow* ou *actor/action*).
   - Mapear User Stories → Componentes (evitando a *entity trap*).
   - Análise de acoplamento aferente ($Ca$), eferente ($Ce$) e instabilidade ($I$) por componente.
@@ -27,7 +27,7 @@
 ---
 
 ### 2. Decisões Arquiteturais e Diagramas (`adr/` e `diagramas/`)
-- [ ] **ADRs (`adr/`):**
+- [1/5] **ADRs (`adr/`):**
   - Mínimo de 5 ADRs com: *Contexto*, *Decisão*, *Consequências* e *Alternativas Rejeitadas*.
   - Pelo menos **1 ADR revisto ou substituído** ao longo do projeto.
 - [ ] **Diagramas C4 (`diagramas/`):**
