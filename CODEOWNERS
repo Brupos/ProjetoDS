@@ -1,0 +1,12 @@
+/ARCHITECTURE.md                                @Davidprpinheiro04 @Brupos @matiasdavo
+/docs/                                          @Davidprpinheiro04 @Brupos @matiasdavo
+/src/main/java/pt/ulisboa/pedala/viagens/       @Davidprpinheiro04
+/src/main/java/pt/ulisboa/pedala/app/           @Davidprpinheiro04
+/src/main/java/pt/ulisboa/pedala/estacoes/      @Brupos
+/src/main/java/pt/ulisboa/pedala/manutencao/    @Brupos
+/src/main/java/pt/ulisboa/pedala/faturacao/     @matiasdavo
+/src/main/java/pt/ulisboa/pedala/relatorios/    @matiasdavo
+/src/main/java/pt/ulisboa/pedala/app/           @matiasdavo
+/tests/architecture/                            @Davidprpinheiro04 @Brupos @matiasdavo
+/CODEOWNERS                                     @Davidprpinheiro04 @Brupos @matiasdavo
+/prompts/                                       @Davidprpinheiro04 @Brupos @matiasdavo
