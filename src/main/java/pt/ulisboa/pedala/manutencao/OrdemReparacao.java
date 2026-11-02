@@ -8,5 +8,13 @@ public record OrdemReparacao(
     String docaId,
     String motivo,
     Instant dataCriacao,
+    Instant dataConclusao,
+    String relatorioTecnico,
     boolean resolvida
-) {}
+) {
+    public OrdemReparacao concluir(String relatorio) {
+        return new OrdemReparacao(
+            id, bicicletaId, docaId, motivo, dataCriacao, Instant.now(), relatorio, true
+        );
+    }
+}
