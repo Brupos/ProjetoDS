@@ -6,7 +6,6 @@
 /src/main/java/pt/ulisboa/pedala/manutencao/    @Brupos
 /src/main/java/pt/ulisboa/pedala/faturacao/     @matiasdavo
 /src/main/java/pt/ulisboa/pedala/relatorios/    @matiasdavo
-/src/main/java/pt/ulisboa/pedala/app/           @matiasdavo
 /tests/architecture/                            @Davidprpinheiro04 @Brupos @matiasdavo
 /CODEOWNERS                                     @Davidprpinheiro04 @Brupos @matiasdavo
 /prompts/                                       @Davidprpinheiro04 @Brupos @matiasdavo
