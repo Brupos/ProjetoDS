@@ -7,6 +7,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DocaService {
     private final Map<String, Doca> docas = new ConcurrentHashMap<>();
     private final Map<String, Bicicleta> bicicletas = new ConcurrentHashMap<>();
+    private final Map<String, Estacao> estacoes = new ConcurrentHashMap<>();
+
+    public void registarEstacao(Estacao estacao) {
+        estacoes.put(estacao.id(), estacao);
+    }
 
     public void registarDoca(Doca doca) {
         docas.put(doca.getId(), doca);
@@ -22,6 +27,13 @@ public class DocaService {
 
     public Optional<Bicicleta> obterBicicleta(String bicicletaId) {
         return Optional.ofNullable(bicicletas.get(bicicletaId));
+    }
+
+    public Optional<String> obterFreguesiaDaDoca(String docaId) {
+        return obterDoca(docaId)
+            .map(Doca::getEstacaoId)
+            .map(estacoes::get)
+            .map(Estacao::freguesia);
     }
 
     public EstadoDoca consultarEstado(String docaId) {
