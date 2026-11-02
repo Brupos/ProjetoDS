@@ -61,8 +61,8 @@ Segundo a formulação de Robert C. Martin e Richards & Ford:
 A conascência quantifica o impacto e acoplamento entre os componentes do sistema:
 
 ### Conascência Estática
-* **Conascência de Nome (CoN):** Presente nas interfaces de serviço Java públicas entre componentes (ex.: `EstacaoService.solicitarDesbloqueio()` e `ManutencaoService.registarAlerta()`). É a forma de conascência mais fraca e recomendada.
-* **Conascência de Tipo (CoT):** Presente na partilha de *records* imutáveis de domínio (ex.: `ViagemId`, `DocaId`, `TimestampUTC`), garantindo validação em tempo de compilação sem partilhar estado mutável ou entidades de base de dados.
+* **Conascência de Nome (CoN):** Presente nas interfaces de serviço Java públicas entre componentes (ex.: `EstacaoService.solicitarDesbloqueio()` e `ViagensQueryService.obterViagem()`). É a forma de conascência mais fraca e recomendada.
+* **Conascência de Tipo (CoT):** Presente na partilha de *records* imutáveis de domínio (ex.: `ViagemId`, `DocaId`), garantindo validação em tempo de compilação sem partilhar estado mutável ou entidades de base de dados.
 
 ### Conascência Dinâmica
 * **Conascência de Execução / Ordem (CoE):** Presente no ciclo de vida de aluguer: uma bicicleta só pode ser trancada ou encaminhada para manutenção se tiver existido um registo prévio de viagem ativa ou estado de avaria. Mitigada através do uso de identificadores de correlação únicos por viagem. `Manutencao` não expõe serviços para outros módulos (apenas subscreve eventos).
