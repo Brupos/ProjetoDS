@@ -77,11 +77,11 @@ Foram identificados dois pontos críticos de acoplamento temporal no sistema:
 
 1. **Processamento de Faturas no Fecho da Viagem:**
    * *Problema:* Se a comunicação entre `GestaoViagens` e `TarifarioCobranca` for síncrona em bloco transacional, qualquer lentidão de resposta ou indisponibilidade na comunicação com a Autoridade Tributária bloquearia o utilizador na doca ao devolver a bicicleta.
-   * *Mitigação:* `GestaoViagens` emite o evento interno `ViagemConcluidaEvent` e encerra a interação física na doca de imediato. O módulo `TarifarioCobranca` subscreve o evento e gera a fatura assincronamente em background.
+   * *Mitigação:* `GestaoViagens` emite o evento interno `ViagemConcluida` e encerra a interação física na doca de imediato. O módulo `TarifarioCobranca` subscreve o evento e gera a fatura assincronamente em background.
 
 2. **Propagação de Alertas de Avaria e Bloqueio Preventivo (US-2):**
    * *Problema:* Se o processamento de um alerta de avaria (reportado pela telemetria da bicicleta elétrica) exigir resposta síncrona de confirmação do sistema de manutenção antes de libertar os recursos de rede, a doca e o servidor arriscam timeouts sob pico de tráfego.
-   * *Mitigação:* O reporte de anomalia é publicado como evento assíncrono `AlertaAvariaEvent`; `Manutencao` processa a mensagem, abre a ordem de serviço e envia comando autónomo para `EstacoesDocas` colocar a doca/bicicleta em modo bloqueado.
+   * *Mitigação:* O reporte de anomalia é publicado como evento assíncrono `AlertaAvaria`; `Manutencao` processa a mensagem, abre a ordem de serviço e envia comando autónomo para `EstacoesDocas` colocar a doca/bicicleta em modo bloqueado.
 
 ---
 
