@@ -29,14 +29,20 @@ public class DocaService {
     }
 
     public void bloquearDoca(String docaId) {
-        obterDoca(docaId).ifPresent(Doca::bloquearPorAvaria);
+        obterDoca(docaId)
+            .orElseThrow(() -> new IllegalArgumentException("Doca não encontrada: " + docaId))
+            .bloquearPorAvaria();
     }
 
     public void bloquearBicicleta(String bicicletaId) {
-        obterBicicleta(bicicletaId).ifPresent(Bicicleta::marcarComoAvariada);
+        obterBicicleta(bicicletaId)
+            .orElseThrow(() -> new IllegalArgumentException("Bicicleta não encontrada: " + bicicletaId))
+            .marcarComoAvariada();
     }
 
     public void libertarDocaAposReparacao(String docaId) {
-        obterDoca(docaId).ifPresent(Doca::libertar);
+        obterDoca(docaId)
+            .orElseThrow(() -> new IllegalArgumentException("Doca não encontrada: " + docaId))
+            .libertar();
     }
 }
