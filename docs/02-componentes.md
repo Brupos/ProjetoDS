@@ -92,4 +92,4 @@ Foram identificados dois pontos críticos de acoplamento temporal no sistema:
   2. *Violação de Isolamento Legal (RGPD vs. AT):* Misturava dados fiscais confidenciais com registos de rotas e avarias, impossibilitando a garantia estrita de que os relatórios municipais não acedessem a dados pessoais.
 * **Refatoração Aplicada (Iteração 1 - Desenho Atual):**
   * Divisão estrita em componentes desacoplados: `GestaoViagens` (ciclo de aluguer), `EstacoesDocas` (hardware e inventário), `Manutencao` (triagem e ordens) e `TarifarioCobranca` (regras fiscais e tarifárias).
-  * **Resultado:** Redução do acoplamento eferente individual, estabilização dos módulos de hardware e conformidade fiscal ($I = 0.00$), e isolamento auditável das regras de privacidade.
+  * **Resultado:** Redução do acoplamento eferente individual, estabilização dos módulos de hardware e conformidade fiscal, e isolamento auditável das regras de privacidade.
