@@ -17,37 +17,64 @@ public class ArchitectureTest {
         slices().matching("pt.ulisboa.pedala.(*)..")
             .should().beFreeOfCycles();
 
-    // R1: EstacoesDocas é o núcleo mais estável (I = 0.00) - não depende de nenhum módulo de negócio
+    // R1: Estações não depende de outros módulos de negócio.
     @ArchTest
     public static final ArchRule estacoes_nao_deve_depender_de_outros_modulos =
-        classes().that().resideInAPackage("..estacoes..")
-            .should().onlyDependOnClassesThat().resideInAnyPackage(
-                "..estacoes..",
-                "java..",
-                "org.."
-            );
+        dependeApenasDe("..estacoes..", "..estacoes..");
 
-    // R2: Quebra de ciclo formalizada no ADR-006 (Manutenção consome eventos e atua em Estações)
+    // A matriz allowed-to-use permite manutencao -> viagens e manutencao -> estacoes.
     @ArchTest
-    public static final ArchRule manutencao_nao_deve_aceder_a_viagens =
-        noClasses().that().resideInAPackage("..manutencao..")
-            .should().accessClassesThat().resideInAPackage("..viagens..");
+    public static final ArchRule viagens_so_deve_depender_de_estacoes =
+        dependeApenasDe("..viagens..", "..viagens..", "..estacoes..");
 
-    // R3: Isolamento RGPD / Fiscalidade (ADR-004 e 01-caracteristicas)
     @ArchTest
-    public static final ArchRule relatorios_nao_deve_aceder_a_faturacao =
-        noClasses().that().resideInAPackage("..relatorios..")
-            .should().accessClassesThat().resideInAPackage("..faturacao..");
+    public static final ArchRule manutencao_so_deve_depender_de_viagens_e_estacoes =
+        dependeApenasDe("..manutencao..", "..manutencao..", "..viagens..", "..estacoes..");
 
-    // R4: Faturação não acede ao hardware nem à topologia física
     @ArchTest
-    public static final ArchRule faturacao_nao_deve_aceder_a_estacoes =
-        noClasses().that().resideInAPackage("..faturacao..")
-            .should().accessClassesThat().resideInAPackage("..estacoes..");
+    public static final ArchRule faturacao_so_deve_depender_de_viagens =
+        dependeApenasDe("..faturacao..", "..faturacao..", "..viagens..");
 
-    // R5: Viagens não acede a manutenção (comunicação desacoplada)
     @ArchTest
-    public static final ArchRule viagens_nao_deve_aceder_a_manutencao =
-        noClasses().that().resideInAPackage("..viagens..")
-            .should().accessClassesThat().resideInAPackage("..manutencao..");
+    public static final ArchRule relatorios_so_deve_depender_de_viagens_e_estacoes =
+        dependeApenasDe("..relatorios..", "..relatorios..", "..viagens..", "..estacoes..");
+
+    @ArchTest
+    public static final ArchRule modulos_de_dominio_nao_devem_depender_de_app =
+        noClasses().that().resideInAnyPackage(
+            "..viagens..",
+            "..estacoes..",
+            "..manutencao..",
+            "..faturacao..",
+            "..relatorios.."
+        ).should().dependOnClassesThat().resideInAPackage("..app..");
+
+    @ArchTest
+    public static final ArchRule app_pode_integrar_os_modulos_de_dominio =
+        dependeApenasDe(
+            "..app..",
+            "..app..",
+            "..viagens..",
+            "..estacoes..",
+            "..manutencao..",
+            "..faturacao..",
+            "..relatorios.."
+        );
+
+    private static ArchRule dependeApenasDe(String pacoteOrigem, String... pacotesPermitidos) {
+        String[] pacotesPermitidosComBibliotecas = new String[pacotesPermitidos.length + 2];
+        System.arraycopy(
+            pacotesPermitidos,
+            0,
+            pacotesPermitidosComBibliotecas,
+            0,
+            pacotesPermitidos.length
+        );
+        pacotesPermitidosComBibliotecas[pacotesPermitidos.length] = "java..";
+        pacotesPermitidosComBibliotecas[pacotesPermitidos.length + 1] = "org..";
+
+        return classes().that().resideInAPackage(pacoteOrigem)
+            .should().onlyDependOnClassesThat()
+            .resideInAnyPackage(pacotesPermitidosComBibliotecas);
+    }
 }
