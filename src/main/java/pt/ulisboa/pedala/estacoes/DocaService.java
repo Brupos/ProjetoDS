@@ -37,7 +37,57 @@ public class DocaService {
     }
 
     public EstadoDoca consultarEstado(String docaId) {
-        return obterDoca(docaId).map(Doca::getEstado).orElse(EstadoDoca.EM_MANUTENCAO);
+        return obterDoca(docaId).map(Doca::getEstado)
+            .orElse(EstadoDoca.EM_MANUTENCAO);
+    }
+
+    public String retirarBicicletaParaViagem(String docaId) {
+        Doca doca = obterDoca(docaId)
+            .orElseThrow(() -> new IllegalArgumentException("Doca não encontrada: " + docaId));
+
+        synchronized (doca) {
+            if (doca.getEstado() != EstadoDoca.OCUPADA) {
+                throw new IllegalStateException("A doca não tem uma bicicleta disponível.");
+            }
+
+            String bicicletaId = doca.getBicicletaId();
+            Bicicleta bicicleta = obterBicicleta(bicicletaId)
+                .orElseThrow(() -> new IllegalStateException("Bicicleta não encontrada: " + bicicletaId));
+
+            synchronized (bicicleta) {
+                if (bicicleta.getEstado() != EstadoBicicleta.DISPONIVEL) {
+                    throw new IllegalStateException("A bicicleta não está disponível.");
+                }
+
+                doca.libertar();
+                bicicleta.marcarEmViagem();
+            }
+
+            return bicicletaId;
+        }
+    }
+
+    public void devolverBicicleta(String docaId, String bicicletaId) {
+        Doca doca = obterDoca(docaId)
+            .orElseThrow(() -> new IllegalArgumentException("Doca não encontrada: " + docaId));
+
+        Bicicleta bicicleta = obterBicicleta(bicicletaId)
+            .orElseThrow(() -> new IllegalArgumentException("Bicicleta não encontrada: " + bicicletaId));
+
+        synchronized (doca) {
+            synchronized (bicicleta) {
+                if (doca.getEstado() != EstadoDoca.LIVRE) {
+                    throw new IllegalStateException("A doca de destino não está livre.");
+                }
+
+                if (bicicleta.getEstado() != EstadoBicicleta.EM_VIAGEM) {
+                    throw new IllegalStateException("A bicicleta não está em viagem.");
+                }
+
+                doca.docarBicicleta(bicicletaId);
+                bicicleta.disponibilizar();
+            }
+        }
     }
 
     public void bloquearDoca(String docaId) {
