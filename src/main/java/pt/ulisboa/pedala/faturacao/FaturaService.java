@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 
 public class FaturaService {
     public BigDecimal calcularTarifa(ViagemConcluidaEvent evento) {
-        if (evento.duracaoMinutos() <= 30) {
+        if (evento.duracaoMinutos() <= 45) {
             return BigDecimal.ZERO;
         }
-        long blocosExtras = (evento.duracaoMinutos() - 30 + 14) / 15;
+        long blocosExtras = (evento.duracaoMinutos() - 45 + 14) / 15;
         return BigDecimal.valueOf(blocosExtras).multiply(new BigDecimal("0.50"));
     }
 }
