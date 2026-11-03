@@ -180,7 +180,7 @@ Informação mais detalhada pode ser encontrada no ficheiro `CODEOWNERS`, na ra�
 ## 5. Artefactos Complementares C4
 
 Os diagramas arquiteturais detalhados encontram-se estruturados na pasta docs/Diagramas/:
-* **C1 - System Context:** docs/Diagramas/c1-system-context.md
-* **C2 - Container Diagram:** docs/Diagramas/c2-container.md
-* **C3 - Component Diagram (US-2):** docs/Diagramas/c3-component-manutencao.md
+* **C1 - System Context:** docs/Diagramas/c4-Level-1.md
+* **C2 - Container Diagram:** docs/Diagramas/C4-Level-2.md
+* **C3 - Component Diagram (US-2):** docs/Diagramas/C4-level-3.md
 
