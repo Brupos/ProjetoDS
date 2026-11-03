@@ -161,12 +161,12 @@ public class App {
     }
 
     private static void mostrarMenu(PrintStream out) {
-        out.println("\n1. Iniciar viagem (US-1)");
-        out.println("2. Terminar viagem (US-1)");
+        out.println("\n1. Iniciar viagem");
+        out.println("2. Terminar viagem");
         out.println("3. Consultar estado das docas");
-        out.println("4. Reportar avaria (US-2)");
-        out.println("5. Concluir primeira ordem pendente (US-2)");
-        out.println("6. Relatório mensal por freguesia (US-4)");
+        out.println("4. Reportar avaria");
+        out.println("5. Concluir primeira ordem pendente");
+        out.println("6. Relatório mensal por freguesia");
         out.println("0. Sair");
         out.print("\nOpção: ");
         out.flush();
