@@ -15,19 +15,19 @@ public class Doca {
 
     public String getId() { return id; }
     public String getEstacaoId() { return estacaoId; }
-    public EstadoDoca getEstado() { return estado; }
-    public String getBicicletaId() { return bicicletaId; }
+    public synchronized EstadoDoca getEstado() { return estado; }
+    public synchronized String getBicicletaId() { return bicicletaId; }
 
-    public void bloquearPorAvaria() {
+    public synchronized void bloquearPorAvaria() {
         this.estado = EstadoDoca.BLOQUEADA_AVARIA;
     }
 
-    public void libertar() {
+    public synchronized void libertar() {
         this.estado = EstadoDoca.LIVRE;
         this.bicicletaId = null;
     }
 
-    public void docarBicicleta(String bicicletaId) {
+    public synchronized void docarBicicleta(String bicicletaId) {
         this.bicicletaId = bicicletaId;
         this.estado = EstadoDoca.OCUPADA;
     }

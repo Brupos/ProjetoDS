@@ -11,19 +11,31 @@ public class Bicicleta {
         this.nivelBateria = nivelBateria;
     }
 
-    public String getId() { return id; }
-    public EstadoBicicleta getEstado() { return estado; }
-    public int getNivelBateria() { return nivelBateria; }
+    public String getId() {
+        return id;
+    }
 
-    public void marcarComoAvariada() {
+    public synchronized EstadoBicicleta getEstado() {
+        return estado;
+    }
+
+    public synchronized int getNivelBateria() {
+        return nivelBateria;
+    }
+
+    public synchronized void marcarComoAvariada() {
         this.estado = EstadoBicicleta.AVARIADA;
     }
 
-    public void colocarEmReparacao() {
+    public synchronized void colocarEmReparacao() {
         this.estado = EstadoBicicleta.EM_MANUTENCAO;
     }
 
-    public void disponibilizar() {
+    public synchronized void marcarEmViagem() {
+        this.estado = EstadoBicicleta.EM_VIAGEM;
+    }
+
+    public synchronized void disponibilizar() {
         this.estado = EstadoBicicleta.DISPONIVEL;
     }
 }
