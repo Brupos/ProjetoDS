@@ -12,7 +12,7 @@ Nenhum corte é "o mais correto" (1.ª lei da arquitetura). O quadro compara-os 
 
 | Fator (origem) | Corte técnico (camadas) | Corte por domínio (escolhido) |
 | :--- | :--- | :--- |
-| **Segurança e Conformidade**: fatura fiscal 10 anos vs percurso RGPD | A persistência é uma camada partilhada; a separação fatura/percurso depende de disciplina. | A fronteira é o pacote: `relatorios` nunca importa `faturacao`. Verificável com ArchUnit (regras R2 e R5). |
+| **Segurança e Conformidade**: fatura fiscal 10 anos vs percurso RGPD | A persistência é uma camada partilhada; a separação fatura/percurso depende de disciplina. | A fronteira é o pacote: `relatorios` nunca importa `faturacao`. Verificável com ArchUnit. |
 | **Disponibilidade**: a falha da AT ou da cobrança não pode bloquear a devolução | O fluxo desbloquear→devolver→cobrar atravessa 4 camadas, o que facilita cadeias de chamadas síncronas. | Cada capacidade é um módulo; entre módulos só há API ou eventos. `viagens` não depende de `faturacao` nem de `manutencao`. |
 | **Elasticidade** | Nenhum dos cortes escala partes do sistema: a unidade de deployment é única. | Idem, mas as fronteiras ficam prontas para extrair `estacoes` ou a telemetria, se um dia for preciso. |
 | **Viabilidade**: 3 elementos, orçamento fixo | Equipas por camada não se justificam com 3 pessoas. | Cada elemento é dono de módulos completos (Lei de Conway). |
