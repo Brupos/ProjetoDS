@@ -1,0 +1,20 @@
+
+
+### 1. Consulta de Sintaxe Fluente da API ArchUnit
+* **Objetivo:** Consultar a forma correta de expressar em código a restrição de aciclicidade e dependências de pacotes permitidas segundo a DSL do ArchUnit em Java 21.
+* **Prompt:**
+  > *"Qual é a sintaxe fluente recomendada no ArchUnit para garantir que um pacote como `..estacoes..` só depende de si próprio e da JDK, sem ciclos de dependência entre fatias do monólito?"*
+
+---
+
+### 2. Apoio na Geração de Casos de Fronteira para Testes Unitários
+* **Objetivo:** Validar se os casos de teste do `ManutencaoServiceTest` cobriam cenários atípicos (ex.: valores nulos em IDs de docas ao reportar avarias isoladas).
+* **Prompt:**
+  > *"Em JUnit 5, sugere cenários de teste para verificar se o bloqueio preventivo de recursos mantém a integridade quando apenas um componente físico (doca ou bicicleta) reporta falha."*
+
+---
+
+### 4. Revisão Teórica de Métricas Arquiteturais
+* **Objetivo:** Validação do cálculo de métricas de acoplamento e instabilidade ($Ca, Ce, I$) para fundamentação da transição entre ADR-005 e ADR-006.
+    * **Prompt:**
+      > *"Num monólito modular, como varia a métrica de instabilidade de Robert C. Martin quando eliminamos uma chamada síncrona bidirecional substituindo-a por um evento assíncrono em memória?"*
