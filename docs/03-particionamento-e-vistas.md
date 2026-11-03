@@ -182,5 +182,5 @@ Informação mais detalhada pode ser encontrada no ficheiro `CODEOWNERS`, na ra�
 Os diagramas arquiteturais detalhados encontram-se estruturados na pasta docs/Diagramas/:
 * **C1 - System Context:** docs/Diagramas/c4-Level-1.md
 * **C2 - Container Diagram:** docs/Diagramas/C4-Level-2.md
-* **C3 - Component Diagram (US-2):** docs/Diagramas/C4-level-3.md
+* **C3 - Component Diagram:** docs/Diagramas/C4-level-3.md
 
